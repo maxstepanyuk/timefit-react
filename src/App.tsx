@@ -1,3 +1,4 @@
+import { useState } from 'react'
 // models
 import type { WorkoutCardProps, WorkoutProps } from './models/workout'
 // components
@@ -11,6 +12,8 @@ let workouts: WorkoutCardProps[] = [
   { minutes: 8, seconds: 10, name: "legs" },
   { minutes: 30, seconds: 10, name: "core" },
 ]
+
+let testWorkout: WorkoutCardProps = { minutes: 10, seconds: 10, name: "new" }
 
 let workout1: WorkoutProps = {
   name: 'Arms HIT',
@@ -45,11 +48,18 @@ let workout1: WorkoutProps = {
 
 
 function App() {
+
+  const [workoutsState, setWorkoutsState] = useState(workouts)
+
+  function addWorkout() {setWorkoutsState(workoutsState => [...workoutsState, testWorkout])}
+
   return (
     <>
       <LandingPage></LandingPage>
       <hr />
-      <WorkoutsPage workouts={workouts}></WorkoutsPage>
+      <button onClick={() => addWorkout()}>add workout</button>
+      <hr />
+      <WorkoutsPage workouts={workoutsState}></WorkoutsPage>
       <hr />
       <WorkoutDetailsPage workout={workout1} ></WorkoutDetailsPage>
     </>
