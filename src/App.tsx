@@ -50,11 +50,14 @@ let workout1: WorkoutProps = {
 function App() {
 
   const [workoutsState, setWorkoutsState] = useState(workouts)
+  const [editMode, setEditMode] = useState(false)
 
   function addWorkout() {setWorkoutsState(workoutsState => [...workoutsState, testWorkout])}
 
   return (
     <>
+      <button onClick={() => setEditMode(!editMode)}>edit mode {editMode ? 'on' : 'off'}</button>
+      <hr />
       <LandingPage></LandingPage>
       <hr />
       <button onClick={() => addWorkout()}>add workout</button>
