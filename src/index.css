@@ -38,6 +38,10 @@
   justify-content: space-between;
 }
 
+.text-center {
+  text-align: center;
+}
+
 * {
   border-radius: 6px;
   margin: 0rem;
@@ -79,6 +83,10 @@ body {
   box-shadow: var(--shadow);
 }
 
+.timer input {
+  text-align: center;
+}
+
 .time-section {
   background-color: var(--main-color-1);
 }
@@ -99,4 +107,13 @@ body {
   padding: 0.1em 0.5em;
   cursor: pointer;
   box-shadow: var(--shadow);
+}
+
+.min-sec-inputs {
+  display: flex;
+  justify-content: center;
+}
+
+.min-sec-inputs input {
+  width: 3rem;
 }
