@@ -2,7 +2,7 @@ function Header() {
   return (
     <div className='header'>
       <h1>
-        <img src='/react.svg' alt="logo" />
+        <img src='/vite.svg' alt="logo" />
         TimeFit
       </h1>
       <h2>timer for tabata, pomadoro and more</h2>
