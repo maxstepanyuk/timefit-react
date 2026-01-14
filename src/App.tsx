@@ -64,7 +64,7 @@ function App() {
       <hr />
       <WorkoutsPage workouts={workoutsState}></WorkoutsPage>
       <hr />
-      <WorkoutDetailsPage workout={workout1} ></WorkoutDetailsPage>
+      <WorkoutDetailsPage workout={workout1} isEditMode={editMode} ></WorkoutDetailsPage>
     </>
   )
 }
