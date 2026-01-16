@@ -1,16 +1,41 @@
+import { useState } from "react"
 import type { editMode } from "../models/util"
 import type { WorkoutDetailsPageProps, WorkoutProps, SetSectionProps, TimerSectionProps } from "../models/workout"
 
 function TimerSection({ minutes = 0, seconds = 0, name = 'timer', isEditMode = false }: TimerSectionProps & editMode) {
+
+  const [nameValue, setNameValue] = useState(name)
+  const [minutesValue, setMinutesValue] = useState(minutes)
+  const [secondsValue, setSecondsValue] = useState(seconds)
+
+  function handleUpdSecondsValue(sec: number) {
+    if (sec < 60 && sec >= 0) {
+      setSecondsValue(sec)
+    }
+  }
+
   return (
     <div className='timer'>
 
       {isEditMode ? (<>
-        <input type="text" name="name" id="name" value={name} placeholder="name" />
+
+        <input
+          type="text" name="name" id="name" placeholder="name"
+          value={nameValue}
+          onChange={(e) => setNameValue(e.target.value)}
+        />
         <div className="row min-sec-inputs">
-          <input type="number" name="minutes" id="minutes" value={minutes} placeholder="minutes" min={0} />
+          <input
+            type="number" name="minutes" id="minutes" placeholder="minutes" min={0}
+            value={minutesValue}
+            onChange={(e) => setMinutesValue(Number(e.target.value))}
+          />
           <p>:</p>
-          <input type="number" name="seconds" id="seconds" value={seconds} placeholder="seconds" min={0} max={59} />
+          <input
+            type="number" name="seconds" id="seconds" placeholder="seconds" min={0} max={59}
+            value={secondsValue}
+            onChange={(e) => handleUpdSecondsValue(Number(e.target.value))}
+          />
         </div>
         <button className="button-mini" onClick={() => alert("todo")}>delete timer</button>
       </>) : (<>
@@ -33,14 +58,24 @@ function SetSection({ repeat = 0, timers, isEditMode = false }: SetSectionProps 
     timersHtml = "no timers"
   }
 
+  const [repeatValue, setRepeatValue] = useState(repeat)
+
+  function handleUpdRepeatValue(repeats: number) {
+    if (repeats >= 0) {
+      setRepeatValue(repeats)
+    } else {
+      setRepeatValue(0)
+    }
+  }
+
   return (
     <div className='set-section'>
-      <p>Sets: {repeat}</p>
+      <p>Sets: {repeatValue}</p>
       {isEditMode && (
         <div className="row">
-          <button className="button-mini" onClick={() => alert("todo")}>add set rep</button>
+          <button className="button-mini" onClick={() => handleUpdRepeatValue(repeatValue - 1)}>remove set rep</button>
           <button className="button-mini" onClick={() => alert("todo")}>delete set</button>
-          <button className="button-mini" onClick={() => alert("todo")}>remove set rep</button>
+          <button className="button-mini" onClick={() => handleUpdRepeatValue(repeatValue + 1)}>add set rep</button>
         </div>
       )}
       <div className='timers'>
@@ -62,13 +97,24 @@ function Workout({ name = "no name", decription = "no description", sets, isEdit
     setsHtml = "no sets"
   }
 
+  const [nameValue, setNameValue] = useState(name)
+  const [decriptionValue, setDecriptionValue] = useState(decription)
+
+
   return (
     <div className='workout'>
       {isEditMode ? (<>
         <div className="row"></div>
-        <input type="text" value={name} placeholder="name" className="text-center" />
+        <input
+          type="text" placeholder="name" className="text-center"
+          value={nameValue} onChange={(e) => setNameValue(e.target.value)}
+        />
         <br />
-        <textarea placeholder="decription" value={decription}></textarea>
+        <textarea
+          placeholder="decription"
+          value={decriptionValue}
+          onChange={(e) => setDecriptionValue(e.target.value)}
+        ></textarea>
       </>) : (<>
         <h3>{name}</h3>
         <p>description: {decription}</p>
