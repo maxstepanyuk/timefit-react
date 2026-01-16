@@ -13,8 +13,10 @@ function WorkoutStopwatchPage() {
       </div>
 
       <div>
-        <h2>work</h2>
-        <h2>mm:ss</h2>
+        <h1>mm:ss</h1> {/* time left of the current timer */}
+        <h2>jumping jacks </h2>  {/* current timer name */}
+        <h3>set 1 of 4</h3> 
+        <h4>general fitness workout</h4> {/* current workout name */}
       </div>
 
       {!isPaused ? (
