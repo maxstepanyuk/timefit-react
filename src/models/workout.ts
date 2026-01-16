@@ -23,7 +23,7 @@ export interface SetSectionProps {
 
 export interface WorkoutProps {
   name?: string,
-  decription?: string,
+  description?: string,
   sets: { repeat: number, timers: TimerSectionProps[] }[];
 }
 

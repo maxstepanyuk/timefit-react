@@ -18,7 +18,7 @@ let testWorkout: WorkoutCardProps = { minutes: 10, seconds: 10, name: "new" }
 
 let workout1: WorkoutProps = {
   name: 'Arms HIT',
-  decription: 'test one',
+  description: 'test one',
   sets: [
     {
       repeat: 1,

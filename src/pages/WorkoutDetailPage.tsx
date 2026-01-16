@@ -88,7 +88,7 @@ function SetSection({ repeat = 0, timers, isEditMode = false }: SetSectionProps 
   )
 }
 
-function Workout({ name = "no name", decription = "no description", sets, isEditMode = false }: WorkoutProps & editMode) {
+function Workout({ name = "no name", description = "no description", sets, isEditMode = false }: WorkoutProps & editMode) {
 
   let setsHtml
   if (sets && sets.length > 0) {
@@ -98,7 +98,7 @@ function Workout({ name = "no name", decription = "no description", sets, isEdit
   }
 
   const [nameValue, setNameValue] = useState(name)
-  const [decriptionValue, setDecriptionValue] = useState(decription)
+  const [descriptionValue, setDescriptionValue] = useState(description)
 
 
   return (
@@ -111,13 +111,13 @@ function Workout({ name = "no name", decription = "no description", sets, isEdit
         />
         <br />
         <textarea
-          placeholder="decription"
-          value={decriptionValue}
-          onChange={(e) => setDecriptionValue(e.target.value)}
+          placeholder="description"
+          value={descriptionValue}
+          onChange={(e) => setDescriptionValue(e.target.value)}
         ></textarea>
       </>) : (<>
         <h3>{name}</h3>
-        <p>description: {decription}</p>
+        <p>description: {description}</p>
       </>)}
       <div className='sets'>
         {setsHtml}
@@ -129,7 +129,7 @@ function Workout({ name = "no name", decription = "no description", sets, isEdit
 function WorkoutDetailsPage({ workout, isEditMode = false }: WorkoutDetailsPageProps & editMode) {
   return (
     <div className='your-timers-page'>
-      <Workout name={workout.name} decription={workout.decription} sets={workout.sets} isEditMode={isEditMode} ></Workout>
+      <Workout name={workout.name} description={workout.description} sets={workout.sets} isEditMode={isEditMode} ></Workout>
       <div className="row">
         {isEditMode ? (<>
           <button className='button-action' onClick={() => alert("todo")}> 💾 save workout</button>
