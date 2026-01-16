@@ -5,6 +5,7 @@ import type { WorkoutCardProps, WorkoutProps } from './models/workout'
 import LandingPage from './pages/LandingPage'
 import WorkoutDetailsPage from './pages/WorkoutDetailPage'
 import WorkoutsPage from './pages/WorkoutsPage'
+import WorkoutStopwatchPage from './pages/WorkoutStopwatchPage'
 
 let workouts: WorkoutCardProps[] = [
   { minutes: 10, seconds: 10, name: "workout 1" },
@@ -65,6 +66,8 @@ function App() {
       <WorkoutsPage workouts={workoutsState}></WorkoutsPage>
       <hr />
       <WorkoutDetailsPage workout={workout1} isEditMode={editMode} ></WorkoutDetailsPage>
+      <hr />
+      <WorkoutStopwatchPage />
     </>
   )
 }
