@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 function Header() {
   return (
     <div className='header'>
@@ -14,9 +16,9 @@ function LandingPage() {
   return (
     <div className="landing-page">
       <Header></Header>
-      <a href="/todo">
+      <Link to="/workouts">
         <button className='button-action'> 💪 get started</button>
-      </a>
+      </Link>
     </div>
   )
 }
