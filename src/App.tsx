@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 // models
 import type { WorkoutCardProps, WorkoutProps } from './models/workout'
 // components
@@ -57,17 +58,24 @@ function App() {
 
   return (
     <>
-      <button onClick={() => setEditMode(!editMode)}>edit mode {editMode ? 'on' : 'off'}</button>
-      <hr />
-      <LandingPage></LandingPage>
-      <hr />
-      <button onClick={() => addWorkout()}>add workout</button>
-      <hr />
-      <WorkoutsPage workouts={workoutsState}></WorkoutsPage>
-      <hr />
-      <WorkoutDetailsPage workout={workout1} isEditMode={editMode} ></WorkoutDetailsPage>
-      <hr />
-      <WorkoutStopwatchPage />
+      {/* <button onClick={() => setEditMode(!editMode)}>edit mode {editMode ? 'on' : 'off'}</button> */}
+      {/* <button onClick={() => addWorkout()}>add workout</button> */}
+
+      <BrowserRouter>
+        <Routes>
+
+          <Route path="/" element={<LandingPage />} />
+
+          <Route path="/workouts" element={<WorkoutsPage workouts={workoutsState} />} />
+
+          <Route path="/workout"           element={<WorkoutDetailsPage workout={workout1} isEditMode={true} />} />
+          <Route path="/workout/:id"       element={<WorkoutDetailsPage workout={workout1} isEditMode={false} />} />
+          <Route path="/workout/:id/edit"  element={<WorkoutDetailsPage workout={workout1} isEditMode={true} />} />
+
+          <Route path="/workout/:id/stopwatch" element={<WorkoutStopwatchPage />} />
+
+        </Routes>
+      </BrowserRouter>
     </>
   )
 }
