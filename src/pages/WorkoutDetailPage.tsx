@@ -127,13 +127,24 @@ function Workout({ name = "no name", description = "no description", sets, isEdi
 }
 
 function WorkoutDetailsPage({ workout, isEditMode = false }: WorkoutDetailsPageProps & editMode) {
+
+  const [workoutData, setWorkoutData] = useState(workout)
+
+  const newSet = {repeat: 1, timers: [{ minutes: 0, seconds: 0, name: "" },],}
+
+  function handleAddSet() {
+    let newWorkout: WorkoutProps = { ...workoutData }
+    newWorkout.sets = [...newWorkout.sets, newSet]
+    setWorkoutData(newWorkout)
+  }
+
   return (
     <div className='your-timers-page'>
-      <Workout name={workout.name} description={workout.description} sets={workout.sets} isEditMode={isEditMode} ></Workout>
+      <Workout name={workoutData.name} description={workoutData.description} sets={workoutData.sets} isEditMode={isEditMode} ></Workout>
       <div className="row">
         {isEditMode ? (<>
           <button className='button-action' onClick={() => alert("todo")}> 💾 save workout</button>
-          <button className='button-action' onClick={() => alert("todo")}> ➕ add set</button>
+          <button className='button-action' onClick={() => handleAddSet()}> ➕ add set</button>
         </>) : (<>
           <a href="/todo">
             <button className='button-action' onClick={() => alert("todo")}> 🚪 back</button>
