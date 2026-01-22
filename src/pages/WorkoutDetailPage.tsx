@@ -51,9 +51,11 @@ function TimerSection({ minutes = 0, seconds = 0, name = 'timer', isEditMode = f
 
 function SetSection({ repeat = 0, timers, isEditMode = false }: SetSectionProps & editMode) {
 
+  const [timersData, setTimersData] = useState(timers)
+
   let timersHtml
-  if (timers && timers.length > 0) {
-    timersHtml = timers.map(timer => <TimerSection minutes={timer.minutes} seconds={timer.seconds} name={timer.name} isEditMode={isEditMode}></TimerSection>)
+  if (timersData && timersData.length > 0) {
+    timersHtml = timersData.map(timer => <TimerSection minutes={timer.minutes} seconds={timer.seconds} name={timer.name} isEditMode={isEditMode}></TimerSection>)
   } else {
     timersHtml = "no timers"
   }
@@ -66,6 +68,12 @@ function SetSection({ repeat = 0, timers, isEditMode = false }: SetSectionProps 
     } else {
       setRepeatValue(0)
     }
+  }
+
+  const newTimer = { minutes: 0, seconds: 0, name: "" }
+  function handleAddTimer() {
+    let newTimers = [...timersData, newTimer]
+    setTimersData(newTimers)
   }
 
   return (
@@ -82,7 +90,7 @@ function SetSection({ repeat = 0, timers, isEditMode = false }: SetSectionProps 
         {timersHtml}
       </div>
       {isEditMode && (
-        <button className="button-mini" onClick={() => alert("todo")}>add timer</button>
+        <button className="button-mini" onClick={() => handleAddTimer()}>add timer</button>
       )}
     </div>
   )
