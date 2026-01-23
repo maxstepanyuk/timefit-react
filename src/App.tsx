@@ -7,6 +7,7 @@ import LandingPage from './pages/LandingPage'
 import WorkoutDetailsPage from './pages/WorkoutDetailPage'
 import WorkoutsPage from './pages/WorkoutsPage'
 import WorkoutStopwatchPage from './pages/WorkoutStopwatchPage'
+import NavBar from './componets/NavBar';
 
 let workouts: WorkoutCardProps[] = [
   { minutes: 10, seconds: 10, name: "workout 1" },
@@ -62,6 +63,9 @@ function App() {
       {/* <button onClick={() => addWorkout()}>add workout</button> */}
 
       <BrowserRouter>
+
+        <NavBar />
+
         <Routes>
 
           <Route path="/" element={<LandingPage />} />
