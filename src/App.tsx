@@ -54,7 +54,7 @@ function App() {
   const [workoutsState, setWorkoutsState] = useState(workouts)
   const [editMode, setEditMode] = useState(false)
 
-  function addWorkout() {setWorkoutsState(workoutsState => [...workoutsState, testWorkout])}
+  function addWorkout() { setWorkoutsState(workoutsState => [...workoutsState, testWorkout]) }
 
   return (
     <>
@@ -68,9 +68,9 @@ function App() {
 
           <Route path="/workouts" element={<WorkoutsPage workouts={workoutsState} />} />
 
-          <Route path="/workout"           element={<WorkoutDetailsPage workout={workout1} isEditMode={true} />} />
-          <Route path="/workout/:id"       element={<WorkoutDetailsPage workout={workout1} isEditMode={false} />} />
-          <Route path="/workout/:id/edit"  element={<WorkoutDetailsPage workout={workout1} isEditMode={true} />} />
+          <Route path="/workout" element={<WorkoutDetailsPage workout={workout1} isEditMode={true} />} />
+          <Route path="/workout/:id" element={<WorkoutDetailsPage workout={workout1} isEditMode={false} />} />
+          <Route path="/workout/:id/edit" element={<WorkoutDetailsPage workout={workout1} isEditMode={true} />} />
 
           <Route path="/workout/:id/stopwatch" element={<WorkoutStopwatchPage />} />
 

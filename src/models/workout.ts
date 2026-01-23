@@ -27,6 +27,6 @@ export interface WorkoutProps {
   sets: { repeat: number, timers: TimerSectionProps[] }[];
 }
 
-export interface WorkoutDetailsPageProps{
-    workout: WorkoutProps
+export interface WorkoutDetailsPageProps {
+  workout: WorkoutProps
 }
