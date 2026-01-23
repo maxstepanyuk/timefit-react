@@ -154,12 +154,12 @@ function WorkoutDetailsPage({ workout, isEditMode = false }: WorkoutDetailsPageP
           <button className='button-action' onClick={() => alert("todo")}> 💾 save workout</button>
           <button className='button-action' onClick={() => handleAddSet()}> ➕ add set</button>
         </>) : (<>
-          <a href="/todo">
-            <button className='button-action' onClick={() => alert("todo")}> 🚪 back</button>
-          </a>
-          <a href="/todo">
-            <button className='button-action' onClick={() => alert("todo")}> 💪 begin</button>
-          </a>
+          <Link to="/workouts">
+            <button className='button-action'> 🚪 back</button>
+          </Link>
+          <Link to="/workout/123/stopwatch">
+            <button className='button-action'> 💪 begin</button>
+          </Link>
         </>)
         }
       </div>
