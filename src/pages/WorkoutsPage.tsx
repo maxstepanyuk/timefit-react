@@ -12,7 +12,7 @@ function WorkoutCard({ minutes = 0, seconds = 0, name = "no name", }: WorkoutCar
         <Link to="/workout/123/edit">
           <button className='button-mini'> ✍️ edit </button>
         </Link>
-        <Link to="/workout/123/stopwatch">
+        <Link to="/workout/123">
           <button className='button-mini'> 💪 start </button>
         </Link>
       </div>
