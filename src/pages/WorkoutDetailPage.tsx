@@ -1,6 +1,7 @@
 import { useState } from "react"
 import type { editMode } from "../models/util"
 import type { WorkoutDetailsPageProps, WorkoutProps, SetSectionProps, TimerSectionProps } from "../models/workout"
+import { Link } from "react-router-dom"
 
 function TimerSection({ minutes = 0, seconds = 0, name = 'timer', isEditMode = false }: TimerSectionProps & editMode) {
 
