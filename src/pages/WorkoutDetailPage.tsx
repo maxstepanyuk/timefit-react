@@ -109,13 +109,15 @@ function SetSection({ repeat = 0, timers, isEditMode = false, onSetDelete }: Set
 
 function Workout({ name = "no name", description = "no description", sets, isEditMode = false }: WorkoutProps & editMode) {
 
+  const [setsData, setSetsData] = useState(sets)
+
   function handleSetDelete(index: number): void {
     console.log('Workout -> onSetDelete ', index)
   }
 
   let setsHtml
-  if (sets && sets.length > 0) {
-    setsHtml = sets.map((set, index) =>
+  if (setsData && setsData.length > 0) {
+    setsHtml = setsData.map((set, index) =>
       <SetSection
         key={index}
         repeat={set.repeat} timers={set.timers}
