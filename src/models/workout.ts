@@ -11,18 +11,16 @@ export interface WorkoutsPageProps {
 
 
 export interface TimerSectionProps {
-  id: number
   name?: string
   minutes: number,
   seconds: number,
-  onTimerDelete: (id: number) => void;
+  onTimerDelete: () => void;
 }
 
 export interface SetSectionProps {
-  id: number
   repeat: number,
   timers: TimerSectionProps[]
-  onSetDelete: (id: number) => void;
+  onSetDelete: () => void;
 }
 
 export interface WorkoutProps {
