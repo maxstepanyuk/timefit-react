@@ -3,7 +3,7 @@ import type { editMode } from "../models/util"
 import type { WorkoutDetailsPageProps, WorkoutProps, SetSectionProps, TimerSectionProps } from "../models/workout"
 import { Link } from "react-router-dom"
 
-function TimerSection({ id, minutes = 0, seconds = 0, name = 'timer', isEditMode = false, onTimerDelete }: TimerSectionProps & editMode) {
+function TimerSection({ minutes = 0, seconds = 0, name = 'timer', isEditMode = false, onTimerDelete }: TimerSectionProps & editMode) {
 
   const [nameValue, setNameValue] = useState(name)
   const [minutesValue, setMinutesValue] = useState(minutes)
@@ -38,7 +38,7 @@ function TimerSection({ id, minutes = 0, seconds = 0, name = 'timer', isEditMode
             onChange={(e) => handleUpdSecondsValue(Number(e.target.value))}
           />
         </div>
-        <button className="button-mini" onClick={() => onTimerDelete(id)}>delete timer</button>
+        <button className="button-mini" onClick={onTimerDelete}>delete timer</button>
       </>) : (<>
         <p>{name}</p>
         <p >{minutes}:{seconds}
@@ -50,12 +50,12 @@ function TimerSection({ id, minutes = 0, seconds = 0, name = 'timer', isEditMode
   )
 }
 
-function SetSection({ id, repeat = 0, timers, isEditMode = false, onSetDelete }: SetSectionProps & editMode) {
+function SetSection({ repeat = 0, timers, isEditMode = false, onSetDelete }: SetSectionProps & editMode) {
 
   const [timersData, setTimersData] = useState(timers)
 
   function handleTimerDelete(index: number): void {
-    console.log('SetSection', id, '-> onTimerDelete', index)
+    console.log('SetSection', '-> onTimerDelete', index)
   }
 
   let timersHtml
@@ -63,7 +63,6 @@ function SetSection({ id, repeat = 0, timers, isEditMode = false, onSetDelete }:
     timersHtml = timersData.map((timer, index) =>
       <TimerSection
         key={index}
-        id={index}
         minutes={timer.minutes} seconds={timer.seconds}
         name={timer.name} isEditMode={isEditMode}
         onTimerDelete={() => handleTimerDelete(index)}
@@ -94,7 +93,7 @@ function SetSection({ id, repeat = 0, timers, isEditMode = false, onSetDelete }:
       {isEditMode && (
         <div className="row">
           <button className="button-mini" onClick={() => handleUpdRepeatValue(repeatValue - 1)}>remove set rep</button>
-          <button className="button-mini" onClick={() => onSetDelete(id)}>delete set</button>
+          <button className="button-mini" onClick={onSetDelete}>delete set</button>
           <button className="button-mini" onClick={() => handleUpdRepeatValue(repeatValue + 1)}>add set rep</button>
         </div>
       )}
@@ -119,7 +118,6 @@ function Workout({ name = "no name", description = "no description", sets, isEdi
     setsHtml = sets.map((set, index) =>
       <SetSection
         key={index}
-        id={index}
         repeat={set.repeat} timers={set.timers}
         isEditMode={isEditMode}
         onSetDelete={() => handleSetDelete(index)}
