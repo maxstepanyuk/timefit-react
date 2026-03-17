@@ -26,8 +26,15 @@ export interface SetSectionProps {
 export interface WorkoutProps {
   name?: string,
   description?: string,
-  sets: { repeat: number, timers: TimerSectionProps[] }[];
+  sets: SetData[];
 }
+
+export interface SetData {
+  repeat: number
+  timers: TimerData[]
+}
+
+export type TimerData = { name?: string; minutes: number; seconds: number }
 
 export interface WorkoutDetailsPageProps {
   workout: WorkoutProps
