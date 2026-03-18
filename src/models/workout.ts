@@ -27,6 +27,8 @@ export interface WorkoutProps {
   name?: string,
   description?: string,
   sets: SetData[];
+  onNameChange: (name: string) => void
+  onDescriptionChange: (description: string) => void
 }
 
 export interface SetData {
