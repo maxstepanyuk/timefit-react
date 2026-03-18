@@ -23,15 +23,20 @@
 
 }
 
-/* @media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
   :root {
     --text-color: #eeeeee;
     --bg-color: #050505;
-    --main-color-1: #a0b2c7;
-    --main-color-2: #e6cbba;
-    }
-    }
-*/
+
+    --action-color: #4a0000;
+
+    --main-color-1: #172536;
+    --main-color-2: #1e3653;
+
+    --shadow: 2px 2px 4px rgba(24, 24, 24, 0.25);
+  }
+}
+
 
 .row {
   display: flex;
