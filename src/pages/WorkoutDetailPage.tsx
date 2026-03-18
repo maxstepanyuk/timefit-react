@@ -112,7 +112,10 @@ function SetSection({ repeat = 0, timers, isEditMode = false, onSetDelete }: Set
   )
 }
 
-function Workout({ name = "no name", description = "no description", sets, isEditMode = false }: WorkoutProps & editMode) {
+function Workout({
+  name = "no name", description = "no description", sets, isEditMode = false,
+  onNameChange, onDescriptionChange
+}: WorkoutProps & editMode) {
 
   const [setsData, setSetsData] = useState(sets)
 
@@ -134,23 +137,19 @@ function Workout({ name = "no name", description = "no description", sets, isEdi
     setsHtml = "no sets"
   }
 
-  const [nameValue, setNameValue] = useState(name)
-  const [descriptionValue, setDescriptionValue] = useState(description)
-
-
   return (
     <div className='workout'>
       {isEditMode ? (<>
-        <div className="row"></div>
         <input
           type="text" placeholder="name" className="text-center"
-          value={nameValue} onChange={(e) => setNameValue(e.target.value)}
+          value={name}
+          onChange={(e) => onNameChange(e.target.value)}
         />
         <br />
         <textarea
           placeholder="description"
-          value={descriptionValue}
-          onChange={(e) => setDescriptionValue(e.target.value)}
+          value={description}
+          onChange={(e) => onDescriptionChange(e.target.value)}
         ></textarea>
       </>) : (<>
         <h3>{name}</h3>
@@ -175,10 +174,23 @@ function WorkoutDetailsPage({ workout, isEditMode = false }: WorkoutDetailsPageP
     newWorkout.sets = [...newWorkout.sets, newSet]
     setWorkoutData(newWorkout)
   }
+  function handleNameChange(name: string) {
+    setWorkoutData(prevWorkout => ({ ...prevWorkout, name }))
+  }
+  function handleDescriptionChange(description: string) {
+    setWorkoutData(prevWorkout => ({ ...prevWorkout, description }))
+  }
 
   return (
     <div className='your-timers-page'>
-      <Workout name={workoutData.name} description={workoutData.description} sets={workoutData.sets} isEditMode={isEditMode} ></Workout>
+      <Workout
+        name={workoutData.name}
+        description={workoutData.description}
+        sets={workoutData.sets}
+        isEditMode={isEditMode}
+        onNameChange={handleNameChange}
+        onDescriptionChange={handleDescriptionChange}
+        />
       <div className="row">
         {isEditMode ? (<>
           <button className='button-action' onClick={() => alert("todo")}> 💾 save workout</button>
