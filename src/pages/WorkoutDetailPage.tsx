@@ -15,6 +15,14 @@ function TimerSection({ minutes = 0, seconds = 0, name = 'timer', isEditMode = f
     }
   }
 
+  function handleNameChange(name: string) {
+    setNameValue(name)
+  }
+
+  function handleMinutesChange(min: number) {
+    setMinutesValue(min)
+  }
+
   return (
     <div className='timer'>
 
@@ -23,13 +31,13 @@ function TimerSection({ minutes = 0, seconds = 0, name = 'timer', isEditMode = f
         <input
           type="text" name="name" id="name" placeholder="name"
           value={nameValue}
-          onChange={(e) => setNameValue(e.target.value)}
+          onChange={(e) => handleNameChange(e.target.value)}
         />
         <div className="row min-sec-inputs">
           <input
             type="number" name="minutes" id="minutes" placeholder="minutes" min={0}
             value={minutesValue}
-            onChange={(e) => setMinutesValue(Number(e.target.value))}
+            onChange={(e) => handleMinutesChange(Number(e.target.value))}
           />
           <p>:</p>
           <input
