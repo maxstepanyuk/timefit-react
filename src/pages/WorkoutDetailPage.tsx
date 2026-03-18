@@ -79,14 +79,11 @@ function SetSection({ repeat = 0, timers, isEditMode = false, onSetDelete }: Set
     timersHtml = "no timers"
   }
 
-  const [repeatValue, setRepeatValue] = useState(repeat)
+  const [repeatValue, setRepeatValue] = useState(Math.max(0, repeat))
 
-  function handleUpdRepeatValue(repeats: number) {
-    if (repeats >= 0) {
-      setRepeatValue(repeats)
-    } else {
-      setRepeatValue(0)
-    }
+  function handleUpdRepeatValueDelta(delta: number) {
+    const repeats = Math.max(0, repeatValue + delta)
+    setRepeatValue(repeats)
   }
 
   const newTimer = { minutes: 0, seconds: 0, name: "" }
@@ -100,9 +97,9 @@ function SetSection({ repeat = 0, timers, isEditMode = false, onSetDelete }: Set
       <p>Sets: {repeatValue}</p>
       {isEditMode && (
         <div className="row">
-          <button className="button-mini" onClick={() => handleUpdRepeatValue(repeatValue - 1)}>remove set rep</button>
+          <button className="button-mini" onClick={() => handleUpdRepeatValueDelta(-1)}>remove set rep</button>
           <button className="button-mini" onClick={onSetDelete}>delete set</button>
-          <button className="button-mini" onClick={() => handleUpdRepeatValue(repeatValue + 1)}>add set rep</button>
+          <button className="button-mini" onClick={() => handleUpdRepeatValueDelta(1)}>add set rep</button>
         </div>
       )}
       <div className='timers'>
