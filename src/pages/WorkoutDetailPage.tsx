@@ -117,15 +117,13 @@ function Workout({
   onNameChange, onDescriptionChange
 }: WorkoutProps & editMode) {
 
-  const [setsData, setSetsData] = useState(sets)
-
   function handleSetDelete(index: number): void {
     console.log('Workout -> onSetDelete ', index)
   }
 
   let setsHtml
-  if (setsData && setsData.length > 0) {
-    setsHtml = setsData.map((set, index) =>
+  if (sets && sets.length > 0) {
+    setsHtml = sets.map((set, index) =>
       <SetSection
         key={index}
         repeat={set.repeat} timers={set.timers}
